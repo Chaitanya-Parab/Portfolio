@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaitanya Parab - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        primaryDark: '#4a49b7',
+                        secondary: '#2e2e2e',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #5D5CDE;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4a49b7;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Section styles */
+        section {
+            padding-top: 80px;
+            margin-top: -80px;
+        }
+        
+        /* Skills progress */
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e4e4e7;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            background-color: #5D5CDE;
+            transition: width 0.5s ease-in-out;
+        }
+        
+        .dark .progress-bar {
+            background-color: #3f3f46;
+        }
+
+        /* Project card hover effect */
+        .project-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .project-card:hover {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Form styling */
+        input:focus, textarea:focus {
+            border-color: #5D5CDE;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(93, 92, 222, 0.2);
+        }
+        
+        .dark input:focus, .dark textarea:focus {
+            box-shadow: 0 0 0 3px rgba(93, 92, 222, 0.3);
+        }
+    </style>
+</head>
+<body class="font-sans bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <!-- Navigation bar -->
+    <header class="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm z-50 shadow-sm transition-colors duration-300">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#home" class="text-xl font-bold text-primary">Chaitanya Shivram Parab</a>
+            
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-gray-600 dark:text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <ul id="nav-menu" class="hidden md:flex space-x-6">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li>
+                    <button id="theme-toggle" class="p-1 rounded-full text-gray-600 dark:text-gray-300 focus:outline-none">
+                        <i id="theme-icon" class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 shadow-md transition-all duration-300">
+            <ul class="container mx-auto px-4 py-2">
+                <li><a href="#home" class="mobile-nav-link block py-2">Home</a></li>
+                <li><a href="#about" class="mobile-nav-link block py-2">About</a></li>
+                <li><a href="#skills" class="mobile-nav-link block py-2">Skills</a></li>
+                <li><a href="#projects" class="mobile-nav-link block py-2">Projects</a></li>
+                <li><a href="#certifications" class="mobile-nav-link block py-2">Certifications</a></li>
+                <li><a href="#contact" class="mobile-nav-link block py-2">Contact</a></li>
+                <li class="py-2">
+                    <button id="mobile-theme-toggle" class="p-1 rounded-full text-gray-600 dark:text-gray-300 focus:outline-none">
+                        <i id="mobile-theme-icon" class="fas fa-moon"></i>
+                        <span class="ml-2">Toggle Dark Mode</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center py-20 px-4">
+            <div class="container mx-auto flex flex-col-reverse lg:flex-row items-center justify-between">
+                <div class="lg:w-1/2 text-center lg:text-left mt-12 lg:mt-0 fade-in">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm <span class="text-primary">Chaitanya Parab</span></h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-gray-600 dark:text-gray-400">Computer Science | Software Engineer</h2>
+                    <p class="text-lg mb-8 max-w-2xl mx-auto lg:mx-0">I create elegant solutions to complex problems through code. Passionate about building user-friendly, accessible and responsive web applications.</p>
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                        <a href="#contact" class="btn-primary">Get In Touch</a>
+                        <a href="#projects" class="btn-secondary">View Projects</a>
+                    </div>
+                    <div class="mt-8 flex gap-4 justify-center lg:justify-start">
+                        <a href="https://github.com/Chaitanya-Parab" target="_blank" class="social-icon" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/chaitanya-parab" target="_blank" class="social-icon" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://x.com/ChaitanyaP1912" target="_blank" class="social-icon" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="mailto:cparab02@gmail.com" class="social-icon" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-2/5 w-3/4 mb-12 lg:mb-0 fade-in">
+                    <div class="aspect-square rounded-full overflow-hidden border-4 border-primary relative max-w-md mx-auto">
+                        <!-- Replace the URL with your profile picture -->
+                        <div class="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-400 dark:text-gray-500">
+                             <img src="https://media-hosting.imagekit.io//5bb0757507b54639/Screenshot%202024-12-31%20204728.png?Expires=1836195418&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=N1x8PpKQ2PP7qmVp5zQ~bGVJAL3uoYL9qplQ0DzGlEdsgEFiCJUfwdQ-ytwIawzx29S5ONG-LeLURe4KMpg8t~xG~nBSgp~2ZgfYgxT4OIPOm0NT~HDzZ4sNeXWKq9UI2Io2KFY-lFO7aSs3vP~cRkvVsDIa9qxOpysJJKhfIdET4uCk~-9Ry7qDQkW6yaRxUmvIXDuCVMXd25cwBoaoyopgEB1z2Rh2A2b3fC2P6rRmwZUNxTmT7r4yq-0Hh7ht5hNP2RP~NFEGUj6pt0KyoQKsXT3fCjMFp1TMO~cKrowZau~lfivSSFRVAV7euBkuSXsOyHQVFlUAZ0VFQ8a5bw__" alt="Profile" class="">
+                            <i class="fas fa-user text-6xl"></i> 
+                            <p class="absolute bottom-5 text-sm text-center w-full"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 px-4 bg-gray-50 dark:bg-gray-800">
+            <div class="container mx-auto">
+                <h2 class="section-title">About Me</h2>
+                <div class="grid md:grid-cols-2 gap-10 mt-12">
+                    <div class="fade-in">
+                        <h3 class="text-2xl font-bold mb-4">Who I Am</h3>
+                        <p class="mb-4">I'm a passionate second year student with expertise in building web applications. I enjoy tackling complex problems and creating intuitive, user-friendly interfaces that drive business growth.</p>
+                        <p class="mb-6">With a foundation in programming,algorithms and data structures, I am passionate about leveraging technology to solve real-world problems,I combine technical expertise with creative problem-solving to deliver high-quality solutions.</p>
+                        
+                        <h3 class="text-2xl font-bold mb-4 mt-8">Education</h3>
+                        <div class="mb-4">
+                            <h4 class="text-xl font-semibold">Bachelor of Engineering in Computer Science</h4>
+                            <p class="text-gray-600 dark:text-gray-400">SSPM'S College of Engineering,Kankavli | 2023-2027</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="text-xl font-semibold">Web Developer Course + DSA</h4>
+                            <p class="text-gray-600 dark:text-gray-400">Algoprep, 2024</p>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <a href="https://pdf.ac/3moDRe" class="btn-primary inline-block">Download Resume <i class="fas fa-download ml-2"></i></a>
+                        </div>
+                    </div>
+                    <div class="fade-in">
+                        <h3 class="text-2xl font-bold mb-4">My Journey</h3>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h4 class="text-xl font-semibold">Second Year Student</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">Computer Science, 2023-Present</p>
+                                    <p class="mt-2">Leading to develop knowledge in tech field and AI tools in current senerio.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h4 class="text-xl font-semibold">Web Developer</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">VLC Media, 2023-2024</p>
+                                    <p class="mt-2">Built responsive web applications using modern JavaScript frameworks and HTML.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h4 class="text-xl font-semibold">Intern </h4>
+                                    <p class="text-gray-600 dark:text-gray-400">Edunet Foundation,2025</p>
+                                    <p class="mt-2">Assisted in developing a project on human pose estimation system using machine learning.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 px-4">
+            <div class="container mx-auto">
+                <h2 class="section-title">My Skills</h2>
+                
+                <div class="grid md:grid-cols-2 gap-10 mt-12">
+                    <div class="fade-in">
+                        <h3 class="text-2xl font-bold mb-6">Technical Skills</h3>
+                        
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">HTML/CSS</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">JavaScript</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">React.js</span>
+                                <span>20%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Python</span>
+                                <span>60%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Java</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="fade-in">
+                        <h3 class="text-2xl font-bold mb-6">Soft Skills & Tools</h3>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="skill-card">
+                                <i class="fas fa-comments text-2xl text-primary mb-2"></i>
+                                <h4 class="font-semibold text-lg">Communication</h4>
+                                <p class="text-gray-600 dark:text-gray-400">Clear and concise communication with team members and senior members.</p>
+                            </div>
+                            
+                            <div class="skill-card">
+                                <i class="fas fa-users text-2xl text-primary mb-2"></i>
+                                <h4 class="font-semibold text-lg">Teamwork</h4>
+                                <p class="text-gray-600 dark:text-gray-400">Collaborative approach to problem-solving and project development</p>
+                            </div>
+                            
+                            <div class="skill-card">
+                                <i class="fas fa-tasks text-2xl text-primary mb-2"></i>
+                                <h4 class="font-semibold text-lg">Project Management</h4>
+                                <p class="text-gray-600 dark:text-gray-400">Experienced with project methodologies and project coordination</p>
+                            </div>
+                            
+                            <div class="skill-card">
+                                <i class="fas fa-lightbulb text-2xl text-primary mb-2"></i>
+                                <h4 class="font-semibold text-lg">Problem-Solving</h4>
+                                <p class="text-gray-600 dark:text-gray-400">Analytical approach to identifying and solving complex issues</p>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-2xl font-bold mb-6 mt-8">Tools & Environment</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="tool-badge">VS Code</span>
+                            <span class="tool-badge">Git & GitHub</span>
+                            <span class="tool-badge">Docker</span>
+                            <span class="tool-badge">API Postman</span>
+                            <span class="tool-badge">Cloud Computing</span>
+                            <span class="tool-badge">AWS</span>
+                            <span class="tool-badge">Pycharm</span>
+                            <span class="tool-badge">MYSQL</span>
+                            <span class="tool-badge">AI Tools</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 px-4 bg-gray-50 dark:bg-gray-800">
+            <div class="container mx-auto">
+                <h2 class="section-title">My Projects</h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <div class="h-48 bg-gray-200 dark:bg-gray-700 rounded-t-lg flex items-center justify-center">
+                            <i class="fas fa-laptop-code text-4xl text-gray-400 dark:text-gray-500"></i>
+                        </div>
+                        <div class="p-6 bg-white dark:bg-gray-900 rounded-b-lg shadow-md">
+                            <h3 class="text-xl font-bold mb-2">Human Pose Estimation System</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">Computer vision-based technology that detects and tracks key points on the human body to understand body posture,movements and gestures..</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">opencv</span>
+                                <span class="tech-badge">keras</span>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="https://github.com/Chaitanya-Parab/Human-Pose-Estimation-System-Using-Machine-Learning.git" target="_blank" class="text-sm font-medium text-primary hover:text-primaryDark transition-colors">
+                                    <i class="fab fa-github mr-1"></i> GitHub
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <div class="h-48 bg-gray-200 dark:bg-gray-700 rounded-t-lg flex items-center justify-center">
+                            <i class="fas fa-mobile-alt text-4xl text-gray-400 dark:text-gray-500"></i>
+                        </div>
+                        <div class="p-6 bg-white dark:bg-gray-900 rounded-b-lg shadow-md">
+                            <h3 class="text-xl font-bold mb-2">Daily Tracker Dashboard</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">A productivity application with task tracking and analytics dashboard.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="tech-badge">HTML</span>
+                                <span class="tech-badge">CSS</span>
+                                <span class="tech-badge">Javascript</span>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="https://github.com/Chaitanya-Parab/hackathon.git" target="_blank" class="text-sm font-medium text-primary hover:text-primaryDark transition-colors">
+                                    <i class="fab fa-github mr-1"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                   
+                 
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="py-20 px-4">
+            <div class="container mx-auto">
+                <h2 class="section-title">Certifications & Achievements</h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                    <!-- Certification 1 -->
+                    <div class="certification-card">
+                        <div class="certification-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="certification-content">
+                            <h3 class="text-xl font-bold mb-2">DSA Prep LITE</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">Algoprep</p>
+                            <p class="text-sm mb-4">Issued Oct 2024</p>
+                            <a href="https://www.linkedin.com/posts/chaitanya-parab_dsa-codingjourney-problemsolving-activity-7249762199856988160-F1_d?utm_source=share&utm_medium=member_desktop&rcm=ACoAAERbUtgB9hTdZ95hkhgnsvn9qMOl2yJ6xkA" class="text-primary hover:text-primaryDark text-sm font-medium">
+                                <i class="fas fa-external-link-alt mr-1"></i> View Certificate
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Certification 2 -->
+                    <div class="certification-card">
+                        <div class="certification-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="certification-content">
+                            <h3 class="text-xl font-bold mb-2">Gen AI Workshop</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">NxtWave</p>
+                            <p class="text-sm mb-4">Issued Dec 2024</p>
+                            <a href="https://www.linkedin.com/posts/chaitanya-parab_nxtwave-megagenaiworkshop-generativeai-activity-7279490361188626433-cX6n?utm_source=share&utm_medium=member_desktop&rcm=ACoAAERbUtgB9hTdZ95hkhgnsvn9qMOl2yJ6xkA" class="text-primary hover:text-primaryDark text-sm font-medium">
+                                <i class="fas fa-external-link-alt mr-1"></i> View Certificate
+                            </a>
+                        </div>
+                    </div>
+                       <!-- Certification 2 -->
+                       <div class="certification-card">
+                        <div class="certification-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="certification-content">
+                            <h3 class="text-xl font-bold mb-2">Internal Hackathon</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">Smart India Hackathon 2024</p>
+                            <p class="text-sm mb-4">Issued Dec 2024 | Collaborated with amazing teammates and proposed problem statement with innovative solution
+                            </p>
+                            <a href="https://www.linkedin.com/posts/chaitanya-parab_sih-innovation-teamwork-activity-7250852239987142657-bh92?utm_source=share&utm_medium=member_desktop&rcm=ACoAAERbUtgB9hTdZ95hkhgnsvn9qMOl2yJ6xkA" class="text-primary hover:text-primaryDark text-sm font-medium">
+                                <i class="fas fa-external-link-alt mr-1"></i> View Certificate
+                            </a>
+                        </div>
+                    </div>
+                    
+                 
+                    
+                    <!-- Achievement 2 -->
+                    <div class="certification-card">
+                        <div class="certification-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="certification-content">
+                            <h3 class="text-xl font-bold mb-2">Ace from Infosys</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">Batch</p>
+                            <p class="text-sm mb-4">Recognized for significant and consistent on Infosys platform.</p>
+                        
+                        </div>
+                    </div>
+                   
+        </section>
+        <br>
+        <br>
+
+
+
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-4 bg-gray-50 dark:bg-gray-800">
+            <div class="container mx-auto">
+                <h2 class="section-title">Get In Touch</h2>
+                
+                <div class="grid md:grid-cols-2 gap-10 mt-12">
+                    <div class="fade-in">
+                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                                    <i class="fas fa-envelope text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold">Email</h4>
+                                    <a href="mailto:cparab02.email@example.com" class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">cparab02@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                                    <i class="fas fa-map-marker-alt text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold">Location</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">Sindhudurg,Ranbambuli</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                                    <i class="fab fa-linkedin text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold">LinkedIn</h4>
+                                    <a href="https://www.linkedin.com/in/chaitanya-parab" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">linkedin.com/in/chaitanya-parab</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                                    <i class="fab fa-github text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold">GitHub</h4>
+                                    <a href="https://github.com/Chaitanya-Parab" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">github.com/Chaitanya-Parab</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="fade-in">
+                        <h3 class="text-2xl font-bold mb-6">Send Me a Message</h3>
+                        
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium mb-1">Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-base" required>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-base" required>
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block text-sm font-medium mb-1">Subject</label>
+                                <input type="text" id="subject" name="subject" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-base">
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-sm font-medium mb-1">Message</label>
+                                <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-base" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary w-full">
+                                Send Message <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                        
+                        <div id="form-success" class="hidden mt-4 p-4 bg-green-100 text-green-800 rounded-lg">
+                            <i class="fas fa-check-circle mr-2"></i> Your message has been sent successfully!
+                        </div>
+                        
+                        <div id="form-error" class="hidden mt-4 p-4 bg-red-100 text-red-800 rounded-lg">
+                            <i class="fas fa-exclamation-circle mr-2"></i> <span id="error-message">There was an error sending your message. Please try again.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-2xl font-bold">Chaitanya Parab</h2>
+                    <p class="text-gray-400 mt-2">Student,Software Engineer</p>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <a href="https://github.com/Chaitanya-Parab" target="_blank" class="hover:text-primary transition-colors" aria-label="GitHub">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/chaitanya-parab" target="_blank" class="hover:text-primary transition-colors" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://x.com/ChaitanyaP1912" target="_blank" class="hover:text-primary transition-colors" aria-label="Twitter">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="mailto:cparab02@gmail.com" class="hover:text-primary transition-colors" aria-label="Email">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Chaitanya Parab. All rights reserved.</p>
+                
+                <ul class="flex flex-wrap gap-4 justify-center">
+                    <li><a href="#home" class="text-gray-400 hover:text-primary text-sm transition-colors">Home</a></li>
+                    <li><a href="#about" class="text-gray-400 hover:text-primary text-sm transition-colors">About</a></li>
+                    <li><a href="#skills" class="text-gray-400 hover:text-primary text-sm transition-colors">Skills</a></li>
+                    <li><a href="#projects" class="text-gray-400 hover:text-primary text-sm transition-colors">Projects</a></li>
+                    <li><a href="#certifications" class="text-gray-400 hover:text-primary text-sm transition-colors">Certifications</a></li>
+                    <li><a href="#contact" class="text-gray-400 hover:text-primary text-sm transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 p-3 rounded-full bg-primary text-white shadow-lg z-50 transition-opacity duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- CSS Classes -->
+    <style>
+        /* Section title */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #5D5CDE;
+            border-radius: 2px;
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #5D5CDE;
+            color: white;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #4a49b7;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: transparent;
+            color: #5D5CDE;
+            font-weight: 600;
+            border: 2px solid #5D5CDE;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5D5CDE;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Social Icons */
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #5D5CDE;
+            color: white;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: #4a49b7;
+            transform: translateY(-3px);
+        }
+        
+        /* Navigation links */
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            color: #4b5563;
+            transition: color 0.3s ease;
+        }
+        
+        .dark .nav-link {
+            color: #e5e7eb;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #5D5CDE;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #5D5CDE;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-nav-link {
+            font-weight: 500;
+            color: #4b5563;
+            transition: color 0.3s ease;
+        }
+        
+        .dark .mobile-nav-link {
+            color: #e5e7eb;
+        }
+        
+        .mobile-nav-link:hover {
+            color: #5D5CDE;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 8px;
+            width: 2px;
+            background-color: #e5e7eb;
+        }
+        
+        .dark .timeline::before {
+            background-color: #4b5563;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            top: 6px;
+            left: -2rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: #5D5CDE;
+            border: 4px solid white;
+            z-index: 1;
+        }
+        
+        .dark .timeline-dot {
+            border-color: #1f2937;
+        }
+        
+        /* Skill card */
+        .skill-card {
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .dark .skill-card {
+            background-color: #1f2937;
+        }
+        
+        .dark .skill-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Tool badges */
+        .tool-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: white;
+            color: #4b5563;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-badge:hover {
+            background-color: #5D5CDE;
+            color: white;
+            border-color: #5D5CDE;
+        }
+        
+        .dark .tool-badge {
+            background-color: #1f2937;
+            color: #e5e7eb;
+            border-color: #4b5563;
+        }
+        
+        .dark .tool-badge:hover {
+            background-color: #5D5CDE;
+            color: white;
+            border-color: #5D5CDE;
+        }
+        
+        /* Tech badges */
+        .tech-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: #e5e7eb;
+            color: #4b5563;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .dark .tech-badge {
+            background-color: #374151;
+            color: #e5e7eb;
+        }
+        
+        /* Certification card */
+        .certification-card {
+            display: flex;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .dark .certification-card {
+            background-color: #1f2937;
+        }
+        
+        .dark .certification-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .certification-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: #5D5CDE;
+            color: white;
+            border-radius: 50%;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .certification-content {
+            flex: 1;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for dark mode preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+                updateThemeIcons(true);
+            }
+            
+            // Handle system theme change
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                if (event.matches) {
+                    document.documentElement.classList.add('dark');
+                    updateThemeIcons(true);
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    updateThemeIcons(false);
+                }
+            });
+            
+            // Toggle dark mode
+            document.getElementById('theme-toggle').addEventListener('click', function() {
+                const isDark = document.documentElement.classList.toggle('dark');
+                updateThemeIcons(isDark);
+            });
+            
+            // Mobile theme toggle
+            document.getElementById('mobile-theme-toggle').addEventListener('click', function() {
+                const isDark = document.documentElement.classList.toggle('dark');
+                updateThemeIcons(isDark);
+            });
+            
+            function updateThemeIcons(isDark) {
+                const themeIcon = document.getElementById('theme-icon');
+                const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+                
+                if (isDark) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    mobileThemeIcon.classList.remove('fa-moon');
+                    mobileThemeIcon.classList.add('fa-sun');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                    mobileThemeIcon.classList.remove('fa-sun');
+                    mobileThemeIcon.classList.add('fa-moon');
+                }
+            }
+            
+            // Mobile menu toggle
+            document.getElementById('menu-toggle').addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            });
+            
+            // Hide mobile menu when clicking on a link
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                });
+            });
+            
+            // Back to top button functionality
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.remove('opacity-100', 'visible');
+                    backToTopButton.classList.add('opacity-0', 'invisible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Form submission handling
+            const contactForm = document.getElementById('contact-form');
+            const formSuccess = document.getElementById('form-success');
+            const formError = document.getElementById('form-error');
+            const errorMessage = document.getElementById('error-message');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Hide any existing messages
+                formSuccess.classList.add('hidden');
+                formError.classList.add('hidden');
+                
+                // Collect form data
+                const formData = new FormData(contactForm);
+                const formDataObj = {};
+                formData.forEach((value, key) => {
+                    formDataObj[key] = value;
+                });
+                
+                // For demo purposes, we'll just show success
+                // In a real app, you would send this data to a server
+                setTimeout(() => {
+                    // Display success message
+                    formSuccess.classList.remove('hidden');
+                    contactForm.reset();
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        formSuccess.classList.add('hidden');
+                    }, 5000);
+                }, 1000);
+                
+                // To demonstrate error state (uncomment to test):
+                /*
+                setTimeout(() => {
+                    errorMessage.textContent = "Network error. Please try again later.";
+                    formError.classList.remove('hidden');
+                    
+                    // Hide error message after 5 seconds
+                    setTimeout(() => {
+                        formError.classList.add('hidden');
+                    }, 5000);
+                }, 1000);
+                */
+            });
+            
+            // Highlight active section in navigation
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.pageYOffset >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('text-primary');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('text-primary');
+                    }
+                });
+            });
+            
+            // Add fade-in animation to elements when they come into view
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                fadeInObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
